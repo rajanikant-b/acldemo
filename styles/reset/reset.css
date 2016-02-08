@@ -39,3 +39,14 @@ body {font-size:62.5%;}
 .page-content, .page-content select{
     font-size: 18px !important;
 }
+.resorce-privilege-tb {
+    width: 100%;
+    font-size: 18px !important;
+    border-collapse: collapse;
+    border: 1px solid #000000;
+}
+.resorce-privilege-tb td{
+    padding: 5px;
+    border: 1px solid #000000;
+    text-align: center;
+}

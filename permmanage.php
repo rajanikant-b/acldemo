@@ -52,20 +52,27 @@ include("includes.php");
                 $privileges[$row['role_id'].'-'.$row['resource_id'].'-'
                 .$row['privilege_id']] = true;
             }
+            $outputTable = '<table class="resorce-privilege-tb">
+                <tr><td>Resources</td><td>Privileges</td></tr>';
             //listing resources and privilegs
             while($resource = mysql_fetch_assoc($resourceResult))
             {
-                echo '<p>' . ucfirst($resource['name']) . ':</p><br />';
+                $outputTable .= '<tr><td>'.ucfirst($resource['name']).'</td><td>';
                 foreach($privilegeInfo as $privilege) {
-                    echo '<input type="checkbox" '
+                    $outputTable .='<input type="checkbox" '
                         . 'onclick="setPrivilege(this.checked, '.$currRole.', '
                         . $resource["id"] .', '.$privilege["id"] .')" '
                         . (isset($privileges[$currRole.'-'.$resource["id"].'-'
                             .$privilege["id"]]) ? ' checked="checked" ' : '')
                         .'/> '.$privilege['name'] .'&nbsp;&nbsp;&nbsp;';
                 }
-                echo '<br /><br />';
+                $outputTable .= '</td></tr>';
             }
+
+            $outputTable .= '</table>';
+
+            echo $outputTable;
+
         } catch (Exception $e) {
             echo $e->getMessage();
             exit;
